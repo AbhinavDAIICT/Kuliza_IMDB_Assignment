@@ -47,10 +47,10 @@
           <a class="navbar-brand" href="index.html">Kuliza Movie Search</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-         <form class="navbar-form navbar-left">
-            <input type="text" id="firstName" class="form-control" placeholder="Actor's First Name" required autofocus>
-         	<input type="text" id="lastName" class="form-control" placeholder="Actor's Last Name" required>
-	        <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+         <form class="navbar-form navbar-left" name="nameForm">
+            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Actor's First Name" required autofocus>
+         	<input type="text" id="lastName" name="lastName" class="form-control" placeholder="Actor's Last Name" required>
+	        <button class="btn btn-primary" type="submit" onclick="getActorId()"><span class="glyphicon glyphicon-search"></span></button>
          </form>
         </div><!--/.nav-collapse -->
       </div>
@@ -129,6 +129,8 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="jquery.min.js"></script>
+    <script src="phpPlusJs/scripts.js"></script>
+    <script src="jsFunctions.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
