@@ -19,7 +19,7 @@ alert("Both fields are mandatory");
                 alert(actorId);
             }
         };
-        xmlhttp.open("GET","http://localhost/Kuliza_IMDB_Assignment/phpPlusJs/actorId.php?first=Daniel&last=Radcliffe",false);
+        xmlhttp.open("GET","http://localhost/Kuliza_IMDB_Assignment/phpPlusJs/actorId.php?first="+first+"&last="+last,false);
         xmlhttp.send();
         
         }
