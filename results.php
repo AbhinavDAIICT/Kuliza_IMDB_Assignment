@@ -57,61 +57,72 @@
     </nav>
 
 <div class="container">
-
-	<table style="width: 100%">
+<div class="table-responsiveness">
+	<table  class="table table-hover table-bordered" style="width: 100%">
+	  <thead>
+      <tr>
+        <th>Sr.</th>
+        <th>Poster</th>
+        <th>Details</th>
+        <th>Reviews</th>
+       </tr>
+       </thead>
 		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<td id="c-1-1">&nbsp;</td>
+			<td id="c-2-1">&nbsp;</td>
+			<td id="c-3-1">&nbsp;</td>
 			<td>
-			<table style="width: 100%">
+			<table  class="table table-hover table-bordered" style="width: 100%">
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-1-1">&nbsp;</td>
 				</tr>
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-1-2">&nbsp;</td>
 				</tr>
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-1-3">&nbsp;</td>
 				</tr>
 			</table>
 			</td>
 		</tr>
 		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<td id="c-1-2">&nbsp;</td>
+			<td id="c-2-2">&nbsp;</td>
+			<td id="c-3-2">&nbsp;</td>
 			<td>
-			<table style="width: 100%">
+			<table  class="table table-hover table-bordered" style="width: 100%">
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-2-1">&nbsp;</td>
 				</tr>
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-2-2">&nbsp;</td>
 				</tr>
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-2-3">&nbsp;</td>
 				</tr>
 			</table>
 			</td>
 		</tr>
 		<tr>
-			<td>&nbsp;</td>
-			<td>&nbsp;</td>
+			<td id="c-1-3">&nbsp;</td>
+			<td id="c-2-3">&nbsp;</td>
+			<td id="c-3-3">&nbsp;</td>
 			<td>
-			<table style="width: 100%">
+			<table  class="table table-hover table-bordered" style="width: 100%">
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-3-1">&nbsp;</td>
 				</tr>
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-3-2">&nbsp;</td>
 				</tr>
 				<tr>
-					<td>&nbsp;</td>
+					<td id="rc-3-3">&nbsp;</td>
 				</tr>
 			</table>
 			</td>
 		</tr>
 	</table>
-
+</div>
 </div>
     
     <!-- Bootstrap core JavaScript
