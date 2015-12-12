@@ -123,6 +123,14 @@
 		</tr>
 	</table>
 </div>
+<!-- div to temporarily hold results from top rated movies page-->
+<div class="row" id="topMoviesDiv">
+	
+</div>
+
+
+
+
 </div>
     
     <!-- Bootstrap core JavaScript
