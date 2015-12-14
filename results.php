@@ -28,7 +28,7 @@
       <script src="respond.min.js"></script>
     <![endif]-->
   </head>
-
+  
   <body>
 
     <!-- Fixed navbar -->
@@ -47,13 +47,14 @@
          <form class="navbar-form navbar-left" name="nameForm" id="nameForm">
             <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Actor's First Name" required>
          	<input type="text" id="lastName" name="lastName" class="form-control" placeholder="Actor's Last Name" required>
-	        <input type="submit" class="form-control ">
+	        <input type="submit" id="butt" class="form-control ">
 	       </form>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
 <div class="container">
+
 <div class="table-responsiveness">
 	<table  id ="pTab"class="table table-hover table-bordered" style="width: 100%">
 	  <thead>
@@ -148,10 +149,12 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript">
-	$('#nameForm').submit(function () {
-	 clickIt();
-	 return false;
-	});
+    
+		$('#nameForm').submit(function () {
+		 clickIt();
+		 return false;
+		});
+
 	</script>
 
   </body>

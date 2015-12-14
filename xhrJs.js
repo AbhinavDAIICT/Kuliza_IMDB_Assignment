@@ -4,7 +4,7 @@ var last = document.forms["nameForm"]["lastName"].value;
 if((first == null || first == "") || (last == null || last == "")){
 alert("Both fields are mandatory");
 }else{
-var abc = getActorId("Daniel","Radcliffe");
+var abc = getActorId(first,last);
 
 var ad = getMovieId(abc.responseText);
 
@@ -77,6 +77,7 @@ result = obj[i-1];
  	}
 
 function fetchDetails(movieId){
+
 return $.ajax({
   url: "http://www.omdbapi.com/?i="+movieId,
   dataType:'json',
