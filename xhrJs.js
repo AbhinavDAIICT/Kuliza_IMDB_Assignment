@@ -36,16 +36,6 @@ result = obj[i-1];
             var runtime = result.Runtime;
             var imdbRating = result.imdbRating;
             var imdbVotes = result.imdbVotes;
-/*                   var tdPoster = document.getElementById("c-2-1");
-                   if(thumb!="N/A"){
-				   var posterNode = document.createElement("img");
-				   posterNode.src = thumb;
-				   tdPoster.appendChild(posterNode);
-				   }else{
-				   tdPoster.innerHTML = "No Image";
-				   }
-*/				   
-                  // var tdDetails = document.getElementById("c-3-1");
                    var details= "Title: "+title+"| Year: "+year+"| Rated: "+rated+"| Genre: "+genre+"| Runtime: "+runtime+"| IMDB Rating: "+imdbRating+"| IMDB Votes: "+imdbVotes;
 				   $( "#r-"+i+"-3" ).html(details);
 
