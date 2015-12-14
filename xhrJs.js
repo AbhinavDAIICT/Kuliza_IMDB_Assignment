@@ -7,7 +7,6 @@ alert("Both fields are mandatory");
 var abc = getActorId(first,last);
 
 var ad = getMovieId(abc.responseText);
-
 var mov = ad.responseText;
 result = $(mov).find(".lister-item-image");
 var jsonObjects = [];
@@ -34,23 +33,29 @@ function populateReviews(htmlResponse,i){
 	divs = $(div[0]).find("div");
 	var para = $(div[0]).find("p");
 	var para_len = $(para).size();
+	//alert(para_len);
 	if(para_len > 0){
 		for(var j=0;j<para_len&&j<3;j++){
 				var	review = $(para[j]).html();
-				var h2 = $(divs[0]).find("h2");
-				var small = $(divs[0]).find("small");
+				var h2 = $(divs[j*2]).find("h2");
+				var small = $(divs[j*2]).find("small");
 				var totalReviews = $(small[0]).html();
-				var reviewCount = totalReviews.split(":")[0];
-				var user = $($(divs[0]).find("a")[1]).html(); 
+				//var reviewCount = totalReviews.split(":")[0];
+				var user = $($(divs[j*2]).find("a")[1]).html(); 
 				var location = $(small[1]).html();
 				var date = $(small[2]).html(); 
 				var title = $(h2).html();
-				var cell_data = '<b>'+title+'</b> by '+user+' '+location+' ('+reviewCount+')<br>'+review;
+				if(title){
+				var cell_data = '<b>'+title+'</b> by '+user+' '+location+' | '+totalReviews+'<br>'+review;
 				$('#rc-'+(i+1)+'-'+(j+1)).html(cell_data);
+				}else{
+				
+				$('#rc-'+(i+1)+'-1').html('No reviews');
+
+				}
 		}		
 	}else{
-	
-	
+	$('#rc-'+(i+1)+'-1').html('No reviews');
 	}
 }
 
