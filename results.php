@@ -38,7 +38,7 @@
 		z-index: 9999;
 		opacity:0.85;
 		filter: alpha(opacity=85);
-		background: url(images/loading.gif) center no-repeat #fff;
+		background: url(images/725.gif) center no-repeat #fff;
 	}
     </style>
   </head>
