@@ -23,7 +23,7 @@ $.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
 	 		$.when( fetchDetails(movieId) ).then(function( details, textStatus, jqXHR ) {
 		 		//jsonObjects.push(details);
 		 		countDetails++;
-		 		populateDetails(details,countDetails);
+		 		populateDetails(details,countDetails,movieIds[countDetails-1]);
 	 		});
 	 		
 			$.when( fetchReviews(movieId) ).then(function( reviews, textStatus, jqXHR ) {
@@ -70,7 +70,7 @@ function populateReviews(htmlResponse,i){
 	}
 }
 
-function populateDetails(obj,i){
+function populateDetails(obj,i,movie_id){
 result = obj;
             var thumb = result.Poster;
             var title = result.Title;
@@ -81,9 +81,10 @@ result = obj;
             var imdbRating = result.imdbRating;
             var imdbVotes = result.imdbVotes;
                    var details= "Title: "+title+"</br>Year: "+year+"</br>Rated: "+rated+"</br>Genre: "+genre+"</br>Runtime: "+runtime+"</br>IMDB Rating: "+imdbRating+"</br>IMDB Votes: "+imdbVotes;
+				   var movie_link = "http://www.imdb.com/title/"+movie_id;
 				   $( "#r-"+i+"-3" ).html(details);
 				   if(thumb != 'N/A'){
-				   $( "#r-"+i+"-2" ).html('<img src='+thumb+'></img>');
+				   $( "#r-"+i+"-2" ).html('<a href='+movie_link+'><img src='+thumb+'></img></a>');
 				   }else{
 				   $( "#r-"+i+"-2" ).html('No Image');
 				   }
