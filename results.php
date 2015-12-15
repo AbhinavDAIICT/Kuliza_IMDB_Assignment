@@ -27,10 +27,24 @@
       <script src="html5shiv.min.js"></script>
       <script src="respond.min.js"></script>
     <![endif]-->
+    
+    <style>
+	#loader {
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		z-index: 9999;
+		opacity:0.85;
+		filter: alpha(opacity=85);
+		background: url(images/loading.gif) center no-repeat #fff;
+	}
+    </style>
   </head>
   
   <body>
-
+	<div id="loader" style="display:none;"></div>
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -149,7 +163,6 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript">
-    
 		$('#nameForm').submit(function () {
 		 clickIt();
 		 return false;

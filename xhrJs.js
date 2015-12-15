@@ -1,6 +1,7 @@
 ﻿function clickIt(){
 var first = document.forms["nameForm"]["firstName"].value;
 var last = document.forms["nameForm"]["lastName"].value;
+$('#loader').show();
 if((first == null || first == "") || (last == null || last == "")){
 alert("Both fields are mandatory");
 }else{
@@ -9,14 +10,14 @@ var movieIds = [];
 var countDetails = 0;
 var countMovies = 0;
 $.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
-  alert( jqXHR.status ); // Alerts 200
-  alert(actorId);
+//  alert( jqXHR.status ); // Alerts 200
+//  alert(actorId);
 	$.when( getMovieId(actorId) ).then(function( movies, textStatus, jqXHR ) {
 		result = $(movies).find(".lister-item-image.ribbonize");
-		console.log(result);
+//		console.log(result);
 	 	for(var i=0; i<3;i++){
 	 		var movieId = $(result[i]).attr('data-tconst');
-	 		alert(movieId);
+//	 		alert(movieId);
 	 		movieIds.push(movieId);
 	 		$.when( fetchDetails(movieId) ).then(function( details, textStatus, jqXHR ) {
 		 		//jsonObjects.push(details);
@@ -27,33 +28,13 @@ $.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
 			$.when( fetchReviews(movieId) ).then(function( reviews, textStatus, jqXHR ) {
 				populateReviews(reviews,countMovies);
 				countMovies++;
+				$('#loader').hide();
 			});
 	 	}
 	});
 	
 	
 });
-/*var abc = getActorId(first,last);
-
-var ad = getMovieId(abc.responseText);
-var mov = ad.responseText;
-result = $(mov).find(".lister-item-image");
-var jsonObjects = [];
- 	for(var i=0; i<3;i++){
- 		var movieId = $(result[i]).attr('data-tconst');
- 	//	alert(id);
- 		var details = fetchDetails(movieId);	
- 		var reviews = fetchReviews(movieId);
- 		populateReviews(reviews.responseText,i);
- 		var obj = jQuery.parseJSON(details.responseText);
- 		jsonObjects.push(obj);
- 		details.abort();
-
- 	}
- 	abc.abort(); 
- 	ad.abort();
- 	populateDetails(jsonObjects);  
-*/ 	
 }
 }
 
@@ -88,31 +69,7 @@ function populateReviews(htmlResponse,i){
 	}
 }
 
-/*function populateDetails(obj, i){
-for(var i=1; i<4;i++){
-result = obj;
-            var thumb = result.Poster;
-            var title = result.Title;
-            var year = result.Year;
-            var rated = result.Rated;
-            var genre = result.Genre;
-            var runtime = result.Runtime;
-            var imdbRating = result.imdbRating;
-            var imdbVotes = result.imdbVotes;
-                   var details= "Title: "+title+"</br>Year: "+year+"</br>Rated: "+rated+"</br>Genre: "+genre+"</br>Runtime: "+runtime+"</br>IMDB Rating: "+imdbRating+"</br>IMDB Votes: "+imdbVotes;
-				   $( "#r-"+i+"-3" ).html(details);
-				   if(thumb != 'N/A'){
-				   $( "#r-"+i+"-2" ).html('<img src='+thumb+'></img>');
-				   }else{
-				   $( "#r-"+i+"-2" ).html('No Image');
-				   }
-				   $( "#r-"+i+"-1" ).html(i);
-          	}   
- 	}
-*/
-
 function populateDetails(obj,i){
-//for(var i=1; i<4;i++){
 result = obj;
             var thumb = result.Poster;
             var title = result.Title;
@@ -130,34 +87,10 @@ result = obj;
 				   $( "#r-"+i+"-2" ).html('No Image');
 				   }
 				   $( "#r-"+i+"-1" ).html(i);
-//          	}   
  	}
 
 
 
-/*function populateDetails(obj){
-for(var i=1; i<4;i++){
-result = obj[i-1];
-            var thumb = result.Poster;
-            var title = result.Title;
-            var year = result.Year;
-            var rated = result.Rated;
-            var genre = result.Genre;
-            var runtime = result.Runtime;
-            var imdbRating = result.imdbRating;
-            var imdbVotes = result.imdbVotes;
-                   var details= "Title: "+title+"</br>Year: "+year+"</br>Rated: "+rated+"</br>Genre: "+genre+"</br>Runtime: "+runtime+"</br>IMDB Rating: "+imdbRating+"</br>IMDB Votes: "+imdbVotes;
-				   $( "#r-"+i+"-3" ).html(details);
-				   if(thumb != 'N/A'){
-				   $( "#r-"+i+"-2" ).html('<img src='+thumb+'></img>');
-				   }else{
-				   $( "#r-"+i+"-2" ).html('No Image');
-				   }
-				   $( "#r-"+i+"-1" ).html(i);
-          	}   
- 	}
-
-*/
 function fetchDetails(movieId){
 
 return $.ajax({
