@@ -5,6 +5,7 @@ $('#loader').show();
 if((first == null || first == "") || (last == null || last == "")){
 alert("Both fields are mandatory");
 }else{
+cleanTable();
 var jsonObjects = [];
 var movieIds = [];
 var countDetails = 0;
@@ -130,5 +131,21 @@ return $.ajax({
   })
   .done(function( data ) {
   });
+}
+
+function cleanTable(){
+	//clear srno, details and poster
+	for(var i=1;i<4;i++){
+		for(var j=1;j<4;j++){
+			$( "#r-"+i+"-"+j ).html("&nbsp");
+		}
+	}
+	//clear reviews
+	for(var i=1;i<4;i++){
+		for(var j=1;j<4;j++){
+			$( "#rc-"+i+"-"+j ).html("&nbsp");
+		}
+	}
+	
 }
 
