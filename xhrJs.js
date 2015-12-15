@@ -4,7 +4,36 @@ var last = document.forms["nameForm"]["lastName"].value;
 if((first == null || first == "") || (last == null || last == "")){
 alert("Both fields are mandatory");
 }else{
-var abc = getActorId(first,last);
+var jsonObjects = [];
+var movieIds = [];
+var countDetails = 0;
+var countMovies = 0;
+$.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
+  alert( jqXHR.status ); // Alerts 200
+  alert(actorId);
+	$.when( getMovieId(actorId) ).then(function( movies, textStatus, jqXHR ) {
+		result = $(movies).find(".lister-item-image.ribbonize");
+		console.log(result);
+	 	for(var i=0; i<3;i++){
+	 		var movieId = $(result[i]).attr('data-tconst');
+	 		alert(movieId);
+	 		movieIds.push(movieId);
+	 		$.when( fetchDetails(movieId) ).then(function( details, textStatus, jqXHR ) {
+		 		//jsonObjects.push(details);
+		 		countDetails++;
+		 		populateDetails(details,countDetails);
+	 		});
+	 		
+			$.when( fetchReviews(movieId) ).then(function( reviews, textStatus, jqXHR ) {
+				populateReviews(reviews,countMovies);
+				countMovies++;
+			});
+	 	}
+	});
+	
+	
+});
+/*var abc = getActorId(first,last);
 
 var ad = getMovieId(abc.responseText);
 var mov = ad.responseText;
@@ -24,7 +53,7 @@ var jsonObjects = [];
  	abc.abort(); 
  	ad.abort();
  	populateDetails(jsonObjects);  
- 	
+*/ 	
 }
 }
 
@@ -59,7 +88,54 @@ function populateReviews(htmlResponse,i){
 	}
 }
 
-function populateDetails(obj){
+/*function populateDetails(obj, i){
+for(var i=1; i<4;i++){
+result = obj;
+            var thumb = result.Poster;
+            var title = result.Title;
+            var year = result.Year;
+            var rated = result.Rated;
+            var genre = result.Genre;
+            var runtime = result.Runtime;
+            var imdbRating = result.imdbRating;
+            var imdbVotes = result.imdbVotes;
+                   var details= "Title: "+title+"</br>Year: "+year+"</br>Rated: "+rated+"</br>Genre: "+genre+"</br>Runtime: "+runtime+"</br>IMDB Rating: "+imdbRating+"</br>IMDB Votes: "+imdbVotes;
+				   $( "#r-"+i+"-3" ).html(details);
+				   if(thumb != 'N/A'){
+				   $( "#r-"+i+"-2" ).html('<img src='+thumb+'></img>');
+				   }else{
+				   $( "#r-"+i+"-2" ).html('No Image');
+				   }
+				   $( "#r-"+i+"-1" ).html(i);
+          	}   
+ 	}
+*/
+
+function populateDetails(obj,i){
+//for(var i=1; i<4;i++){
+result = obj;
+            var thumb = result.Poster;
+            var title = result.Title;
+            var year = result.Year;
+            var rated = result.Rated;
+            var genre = result.Genre;
+            var runtime = result.Runtime;
+            var imdbRating = result.imdbRating;
+            var imdbVotes = result.imdbVotes;
+                   var details= "Title: "+title+"</br>Year: "+year+"</br>Rated: "+rated+"</br>Genre: "+genre+"</br>Runtime: "+runtime+"</br>IMDB Rating: "+imdbRating+"</br>IMDB Votes: "+imdbVotes;
+				   $( "#r-"+i+"-3" ).html(details);
+				   if(thumb != 'N/A'){
+				   $( "#r-"+i+"-2" ).html('<img src='+thumb+'></img>');
+				   }else{
+				   $( "#r-"+i+"-2" ).html('No Image');
+				   }
+				   $( "#r-"+i+"-1" ).html(i);
+//          	}   
+ 	}
+
+
+
+/*function populateDetails(obj){
 for(var i=1; i<4;i++){
 result = obj[i-1];
             var thumb = result.Poster;
@@ -81,12 +157,13 @@ result = obj[i-1];
           	}   
  	}
 
+*/
 function fetchDetails(movieId){
 
 return $.ajax({
   url: "http://www.omdbapi.com/?i="+movieId,
   dataType:'json',
-  async:false
+ // async:false
   })
   .done(function( data ){
   });
@@ -96,7 +173,7 @@ return $.ajax({
 function fetchReviews(movieId){
 return $.ajax({
   url: "phpPlusJs/fetchReviews.php?movieId="+movieId,
-  async:false
+ // async:false
   })
   .done(function( data ){
   });
@@ -105,7 +182,7 @@ return $.ajax({
 function getActorId(first,last){
 return $.ajax({
   url: "http://localhost/Kuliza_IMDB_Assignment/phpPlusJs/actorId.php?first="+first+"&last="+last,
-  async:false
+ // async:false
   })
   .done(function( data ){
   });
@@ -116,7 +193,7 @@ function getMovieId(actorId){
 var arr;
 return $.ajax({
   url: "http://localhost/Kuliza_IMDB_Assignment/phpPlusJs/topMovies.php?actorId="+actorId,
-  async: false,
+ // async: false,
   })
   .done(function( data ) {
   });
