@@ -12,7 +12,7 @@ var countDetails = 0;
 var countMovies = 0;
 $.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
 //  alert( jqXHR.status ); // Alerts 200
-//  alert(actorId);
+  if(actorId != 0){
 	$.when( getMovieId(actorId) ).then(function( movies, textStatus, jqXHR ) {
 		result = $(movies).find(".lister-item-image.ribbonize");
 //		console.log(result);
@@ -23,7 +23,7 @@ $.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
 	 		$.when( fetchDetails(movieId) ).then(function( details, textStatus, jqXHR ) {
 		 		//jsonObjects.push(details);
 		 		countDetails++;
-		 		populateDetails(details,countDetails,movieIds[countDetails-1]);
+		 		populateDetails(details,countDetails,movieIds);
 	 		});
 	 		
 			$.when( fetchReviews(movieId) ).then(function( reviews, textStatus, jqXHR ) {
@@ -33,8 +33,10 @@ $.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
 			});
 	 	}
 	});
-	
-	
+	}else{
+	$('#r-1-2').html("No details found for this actor");
+	}
+	$('#loader').hide();
 });
 }
 }
@@ -87,27 +89,29 @@ i = movieIds.indexOf(id);
  *It then extracts data from the json objects to populate the movie detail fields
  *in the table
 */
-function populateDetails(obj,i,movie_id){
+function populateDetails(obj,i,movieIds){
 
-result = obj;
-            var thumb = result.Poster;
-            var title = result.Title;
-            var year = result.Year;
-            var rated = result.Rated;
-            var genre = result.Genre;
-            var runtime = result.Runtime;
-            var imdbRating = result.imdbRating;
-            var imdbVotes = result.imdbVotes;
-                   var details= "Title: "+title+"</br>Year: "+year+"</br>Rated: "+rated+"</br>Genre: "+genre+"</br>Runtime: "+runtime+"</br>IMDB Rating: "+imdbRating+"</br>IMDB Votes: "+imdbVotes;
-				   var movie_link = "http://www.imdb.com/title/"+movie_id;
-				   $( "#r-"+i+"-3" ).html(details);
-				   if(thumb != 'N/A'){
-				   $( "#r-"+i+"-2" ).html('<a href='+movie_link+'><img src='+thumb+'></img></a>');
-				   }else{
-				   $( "#r-"+i+"-2" ).html('No Image');
-				   }
-				   $( "#r-"+i+"-1" ).html(i);
- 	}
+	result = obj;
+	var id = result.imdbID;
+	var i = movieIds.indexOf(id)+1;
+	var thumb = result.Poster;
+	var title = result.Title;
+	var year = result.Year;
+	var rated = result.Rated;
+	var genre = result.Genre;
+	var runtime = result.Runtime;
+	var imdbRating = result.imdbRating;
+	var imdbVotes = result.imdbVotes;
+	       var details= "Title: "+title+"</br>Year: "+year+"</br>Rated: "+rated+"</br>Genre: "+genre+"</br>Runtime: "+runtime+"</br>IMDB Rating: "+imdbRating+"</br>IMDB Votes: "+imdbVotes;
+		   var movie_link = "http://www.imdb.com/title/"+id;
+		   $( "#r-"+i+"-3" ).html(details);
+		   if(thumb != 'N/A'){
+		   $( "#r-"+i+"-2" ).html('<a href='+movie_link+'><img src='+thumb+'></img></a>');
+		   }else{
+		   $( "#r-"+i+"-2" ).html('No Image');
+		   }
+		   $( "#r-"+i+"-1" ).html(i);
+	}
 
 
 
