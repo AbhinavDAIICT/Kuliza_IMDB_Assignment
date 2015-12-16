@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content="Kuliza IMDB Movie Search assignment">
+    <meta name="author" content="Abhinav Tripathi">
+    <link rel="icon" href="images/favicon.ico">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>Kuliza Movie Search</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
 		z-index: 9999;
 		opacity:0.85;
 		filter: alpha(opacity=85);
-		background: url(images/725.gif) center no-repeat #fff;
+		background: url(images/blue_loader.gif) center no-repeat #fff;
 	}
     </style>
   </head>
