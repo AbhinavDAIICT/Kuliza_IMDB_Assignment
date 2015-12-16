@@ -11,21 +11,17 @@ var movieIds = [];
 var countDetails = 0;
 var countMovies = 0;
 $.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
-//  alert( jqXHR.status ); // Alerts 200
+  //if records are not found, actorId is 0
   if(actorId != 0){
 	$.when( getMovieId(actorId) ).then(function( movies, textStatus, jqXHR ) {
 		result = $(movies).find(".lister-item-image.ribbonize");
-//		console.log(result);
 	 	for(var i=0; i<3;i++){
 	 		var movieId = $(result[i]).attr('data-tconst');
-//	 		alert(movieId);
 	 		movieIds.push(movieId);
 	 		$.when( fetchDetails(movieId) ).then(function( details, textStatus, jqXHR ) {
-		 		//jsonObjects.push(details);
 		 		countDetails++;
 		 		populateDetails(details,countDetails,movieIds);
 	 		});
-	 		
 			$.when( fetchReviews(movieId) ).then(function( reviews, textStatus, jqXHR ) {
 				populateReviews(reviews,countMovies,movieIds);
 				countMovies++;
@@ -41,12 +37,15 @@ $.when( getActorId(first,last) ).then(function( actorId, textStatus, jqXHR ) {
 }
 }
 
+
+//retrieve movie id from html of the review page
 function getReviewId(htmlResponse){
 titleDiv = $(htmlResponse).find("#tn15title");
 movie = $(titleDiv).find("a");
 str = $(movie[0]).attr('href');
 return(str.split('/')[2]);
 }
+
 /*
  *populateReviews function takes in htmlResponse and movie count as arguments.
  *It then extracts data from the response to populate the movie review fields
